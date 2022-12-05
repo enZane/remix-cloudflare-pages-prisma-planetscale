@@ -5,6 +5,7 @@
     "build": "run-s \"build:*\"",
     "dev:remix": "remix watch",
     "build:css": "npm run generate:css -- --minify",
+    "build:prisma": "prisma generate --data-proxy",
     "build:remix": "remix build",
     "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
     "dev:css": "npm run generate:css -- --watch",
