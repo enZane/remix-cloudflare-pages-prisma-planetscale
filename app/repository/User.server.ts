@@ -9,17 +9,23 @@ export const findOrCreateUser = async ({
   name: string;
   password: string;
 }) => {
-  const existingUser = await prismaClient.user.findUnique({
-    where: { email },
-  });
-  if (existingUser) {
-    return existingUser;
+  console.log("existingUser");
+
+  try {
+    const existingUser = await prismaClient.user.findUnique({
+      where: { email },
+    });
+    if (existingUser) {
+      return existingUser;
+    }
+    return await prismaClient.user.create({
+      data: {
+        email,
+        name,
+        password,
+      },
+    });
+  } catch (error) {
+    console.log("error", error);
   }
-  return await prismaClient.user.create({
-    data: {
-      email,
-      name,
-      password,
-    },
-  });
 };
